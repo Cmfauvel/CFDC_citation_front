@@ -1,1 +1,39 @@
-<p>register works!</p>
+<div class="container marginTop">
+    <h1>Connexion</h1>
+    <form class="form-group formulaire" [formGroup]="registerForm">
+      <label class="sr-only" for="mail">Mail</label>
+      <div class="input-group mb-2 mr-sm-2 input">
+        <div class="input-group-prepend">
+          <div class="input-group-text">@</div>
+        </div>
+        <input type="email" formControlName="mail" class="form-control" id="mail"
+          placeholder="Mail">
+      </div>
+      <label class="sr-only" for="pseudo">PSEUDO</label>
+      <div class="input-group mb-2 mr-sm-2 input">
+        <div class="input-group-prepend">
+          <div class="input-group-text">U</div>
+        </div>
+        <input type="text" formControlName="pseudo" class="form-control" id="pseudo"
+          placeholder="Pseudo">
+      </div>
+      <label class="sr-only" for="password">MOT DE PASSE</label>
+      <div class="input-group mb-2 mr-sm-2 input">
+        <div class="input-group-prepend">
+          <div class="input-group-text">*</div>
+        </div>
+        <input type="password" formControlName="password" class="form-control"
+          placeholder="Mot de passe" id="password">
+      </div>
+      <label for="confirmPassword" class="sr-only">CONFIRMATION DE MOT DE PASSE</label>
+      <div class="input-group mb-2 mr-sm-2 input">
+        <div class="input-group-prepend">
+          <div class="input-group-text">*</div>
+        </div>
+        <input type="password" class="form-control" formControlName="confirmPassword" id="confirmPassword"
+          placeholder="CONFIRMATION DE MOT DE PASSE">
+      </div>
+      <button type="submit" class="btn btn-primary registerButton" [disabled]="registerForm.invalid" (click)="onSubmit()">S'inscrire</button>
+    </form>
+  
+  </div>
