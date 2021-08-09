@@ -11,6 +11,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './services/auth.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ListCitationsComponent } from './list-citations/list-citations.component';
+import { UploadCitationComponent } from './list-citations/upload-citation/upload-citation.component';
+import { EditCitationComponent } from './list-citations/edit-citation/edit-citation.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { HttpClientModule } from '@angular/common/http';
     HomeComponent,
     RegisterComponent,
     LoginComponent,
-    NavbarComponent
+    NavbarComponent,
+    ListCitationsComponent,
+    UploadCitationComponent,
+    EditCitationComponent
   ],
   imports: [
     BrowserModule,

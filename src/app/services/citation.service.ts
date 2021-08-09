@@ -14,12 +14,16 @@ export class CitationService {
     return this.http.get<Citation>(this.baseUrl);
   }
 
-  selectAllByUser(){
+  selectAllByUser(userId){
+    return this.http.get<Citation>(this.baseUrl + '/' + userId);
+  }
 
+  selectOne(id){
+    return this.http.get<Citation>(this.baseUrl + '/' + id);
   }
 
   selectOneRandom() {
-    
+    return this.http.get<Citation>(this.baseUrl + '/random/1');
   }
 
   update(id, newValues){
@@ -30,7 +34,7 @@ export class CitationService {
     return this.http.delete<Citation>(this.baseUrl + '/' + id);
   }
 
-  create(citation){
-    return this.http.post<any>(this.baseUrl + '/insert', citation)
+  create(userId, citation){
+    return this.http.post<any>(this.baseUrl + '/' + userId, citation)
   }
 }

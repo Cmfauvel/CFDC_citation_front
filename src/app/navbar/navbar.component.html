@@ -10,11 +10,20 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" routerLink='/'>Home</a>
           </li>
-          <li class="nav-item" routerLinkActive="active">
+          <li class="nav-item" routerLinkActive="active" *ngIf="!currentUser">
             <a class="nav-link" routerLink="/connexion">Se connecter</a>
           </li>
-          <li class="nav-item" routerLinkActive="active">
+          <li class="nav-item" routerLinkActive="active" *ngIf="!currentUser">
             <a class="nav-link" routerLink="/inscription">S'inscrire</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active" *ngIf="currentUser">
+            <a class="nav-link" routerLink="/citations">Mes citations</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active" *ngIf="currentUser">
+            <a class="nav-link" (click)="logOut()"><span class="material-icons">
+              logout
+              </span>
+              </a>
           </li>
           
           <!-- <li class="nav-item dropdown">

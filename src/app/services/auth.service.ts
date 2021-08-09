@@ -65,10 +65,10 @@ export class AuthService {
   // }
 
 
-  // logout() {
-  //   localStorage.removeItem('TOKEN_APPLI');
-  //   this.router.navigate(['/login']);
-  // }
+  logout() {
+    localStorage.removeItem('TOKEN_APPLI');
+    this.router.navigate(['/connexion']);
+  }
 
 }
 
