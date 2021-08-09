@@ -39,15 +39,16 @@ export class LoginComponent implements OnInit {
       password: this.loginForm.value.password,
     }
     console.log(user);
-    this.auth.login(user).subscribe(
-      (resp: any) => {
-        console.log("Connection succeed", resp);
-        this.router.navigate(['/']);
-      },
-      error => {
-        console.log('error while');
-      }
+    this.auth.login(user);
+    // .subscribe(
+    //   (resp: any) => {
+    //     console.log("Connection succeed", resp);
+    //     this.router.navigate(['/']);
+    //   },
+    //   error => {
+    //     console.log('error while');
+    //   }
 
-    )
+    // )
   }
 }
