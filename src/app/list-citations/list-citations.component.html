@@ -4,13 +4,14 @@
       <div class="card-body">
         <h5 class="card-title">{{citation.id}}</h5>
         <p class="card-text">{{citation.content}}</p>
-        <span class="material-icons" id="btn-edit" [routerLink]="[citation.id]">
-          edit
-        </span>
-        <span class="material-icons" id="btn-delete" (click)="deleteCitation(citation.id)">
-          delete
-        </span>
-
+        <div class="icon">
+          <span class="material-icons" id="btn-edit" [routerLink]="[citation.id]">
+            edit
+          </span>
+          <span class="material-icons" id="btn-delete">
+            delete
+          </span>
+        </div>
       </div>
     </div>
   </div>

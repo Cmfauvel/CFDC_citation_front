@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 import { User } from '../_models/user';
 import { JwtHelperService } from "@auth0/angular-jwt";
 
@@ -79,27 +79,15 @@ export class AuthService {
     }
   }
 
-  // public isAuthenticated() {
-  //   const token = localStorage.getItem('TOKEN_APPLI');
-  //   console.log(token)
-  //   return this.httpClient
-  //     .get<any>(`${this.baseUrl}/auth/check-authentication/${token}`)
-  //     .subscribe(
-  //       (response) => {
-  //         console.log(response)
-  //         this.currentUserSubject.next(response);
-  //       },
-  //       (error) => {
-  //         console.log('error trying to connect');
-  //       }
-  //     );
-  // }
-
-
-  // register(user): Observable<User> {
-  //   return this.httpClient.post<User>(this.baseUrl + '/auth/register', user)
-  // }
-
+  isAuth(){
+    const token = localStorage.getItem('TOKEN_APPLI');
+    if(token){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
 
   logout() {
     this.currentUserSubject.next(null)
