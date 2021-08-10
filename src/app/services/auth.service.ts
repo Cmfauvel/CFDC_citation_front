@@ -67,6 +67,16 @@ export class AuthService {
       );
   }
 
+  isAuth(){
+    const token = localStorage.getItem('TOKEN_APPLI');
+    if(token){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
 
   // register(user): Observable<User> {
   //   return this.httpClient.post<User>(this.baseUrl + '/auth/register', user)
