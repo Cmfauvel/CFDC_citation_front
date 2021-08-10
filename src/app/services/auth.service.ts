@@ -13,6 +13,8 @@ export class AuthService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
   baseUrl = `${environment.apiUrl}`;
+  messageActivate : string = "Veuillez cliquer sur le lien pour activer votre compte !";
+  messageNotMatch : string = "Adresse mail ou mot de passe erroné."
 
   constructor(private httpClient: HttpClient,
     private router: Router) {
@@ -32,9 +34,15 @@ export class AuthService {
       .subscribe(
         (response) => {
           console.log(response)
-          this.currentUserSubject.next(response);
+          if(response.message == this.messageNotMatch) {
+            return this.messageNotMatch;
+          } else if(response.message == this.messageActivate) {
+            return this.messageActivate;
+          } else {
+            this.currentUserSubject.next(response);
           this.router.navigateByUrl('/');
           localStorage.setItem('TOKEN_APPLI', response.token);
+          }
         },
         (error) => {
           console.log('error trying to connect');
