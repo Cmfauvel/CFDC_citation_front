@@ -11,9 +11,9 @@ export class AppComponent implements OnInit {
   title = 'generateurCitations';
 currentUser: User;
   constructor(private auth: AuthService){
-    this.auth.currentUser.subscribe((resp) => {
-      console.log(resp)
-    })
+    // this.auth.currentUser.subscribe((resp) => {
+    //   console.log(resp)
+    // })
   }
 ngOnInit(): void {
   //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
