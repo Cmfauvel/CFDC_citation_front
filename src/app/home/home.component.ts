@@ -22,14 +22,17 @@ currentUser: User;
       this.currentUser = resp;
     })
     try {
-      this.citationSub = this.citationService.selectOneRandom().subscribe((resp) => {
-        this.citation = resp;
-        console.log(resp)
-      })
+      this.displayCitation();
     } catch {
 
     }
    
+  }
+
+  displayCitation() {
+    this.citationSub = this.citationService.selectOneRandom().subscribe((resp) => {
+    this.citation = resp;    
+    })
   }
 
   ngOnDestroy(): void {

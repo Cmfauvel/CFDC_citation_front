@@ -66,6 +66,7 @@ export class AuthService {
 
 
   logout() {
+    this.currentUserSubject.next(null)
     localStorage.removeItem('TOKEN_APPLI');
     this.router.navigate(['/connexion']);
   }

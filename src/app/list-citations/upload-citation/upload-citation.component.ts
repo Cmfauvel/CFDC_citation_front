@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { CitationService } from 'src/app/services/citation.service';
 import { Citation } from 'src/app/_models/citation';
@@ -18,7 +18,8 @@ export class UploadCitationComponent implements OnInit {
     constructor(private activatedRoute: ActivatedRoute,
       private citationService: CitationService,
       private formBuilder: FormBuilder,
-      private auth: AuthService) {
+      private auth: AuthService,
+      private route: Router) {
         this.uploadForm = this.formBuilder.group({
           content: ""
         })
@@ -44,6 +45,7 @@ export class UploadCitationComponent implements OnInit {
   onSubmit(): void {
     this.citationService.create(this.currentUser.id, this.uploadForm.value).subscribe((resp) => {
       console.log(resp)
+      this.route.navigate(['/citations']);
     })
   }
 

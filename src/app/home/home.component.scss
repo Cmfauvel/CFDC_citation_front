@@ -6,6 +6,21 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    .card{
+        min-height: 25vh;
+        .card-body{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            .btn-citation{
+                border-radius: 15px;
+                outline: none;
+                border: none;
+                padding: 0.3rem;
+                width: 100%;
+        }
+    }
+    }
     .btn {
         min-width: 140px;
         height: 40px;
