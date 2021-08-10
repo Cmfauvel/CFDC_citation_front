@@ -14,7 +14,7 @@ import { User } from 'src/app/_models/user';
 export class UploadCitationComponent implements OnInit {
   citation: Citation;
   uploadForm: FormGroup;
-  currentUser: User;
+  userId;
     constructor(private activatedRoute: ActivatedRoute,
       private citationService: CitationService,
       private formBuilder: FormBuilder,
@@ -27,9 +27,7 @@ export class UploadCitationComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
-    this.auth.currentUser.subscribe((resp) => {
-      this.currentUser = resp;
-    })
+    this.userId = this.auth.getUserId();
   }
 
   initForm(): void{
@@ -43,10 +41,8 @@ export class UploadCitationComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.citationService.create(this.currentUser.id, this.uploadForm.value).subscribe((resp) => {
-      console.log(resp)
+    this.citationService.create(this.userId, this.uploadForm.value)
       this.route.navigate(['/citations']);
-    })
   }
 
 }

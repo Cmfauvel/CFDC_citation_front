@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CitationService } from 'src/app/services/citation.service';
 import { Citation } from 'src/app/_models/citation';
 
@@ -14,24 +14,19 @@ citation: Citation;
 editForm: FormGroup;
   constructor(private activatedRoute: ActivatedRoute,
     private citationService: CitationService,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    private router: Router) {
       this.editForm = this.formBuilder.group({
         content: ""
       })
     }
 
   ngOnInit(): void {
-
-    // this.productService.getAllGames().subscribe((resp) => {
-    //   this.games = resp;
-    // });
     const idCitation = this.activatedRoute.snapshot.params['id'];
     this.citationService.selectOne(idCitation).subscribe((resp) => {
       console.log(resp)
       this.citation = resp[0];
     })
-    // this.game = this.games.find(game => game.id == idGame);
-    // const id = this.activatedRoute.snapshot.params.id;
    
   this.initForm();
   }
@@ -51,6 +46,13 @@ editForm: FormGroup;
 
   onSubmit(): void{
 
+    const citationUpdated = {
+      id: this.citation.id,
+      content: this.editForm.value.content,
+      UserId: this.citation.UserId
+    }
+    this.citationService.update(citationUpdated.id, citationUpdated)
+    this.router.navigate(['/citations']);
   }
 
 }

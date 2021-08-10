@@ -16,6 +16,7 @@ currentUser: User;
     ) { }
 
   ngOnInit(): void {
+    this.auth.isAuthenticated();
     this.auth.currentUser.subscribe((resp) => {
       this.currentUser = resp;
     })

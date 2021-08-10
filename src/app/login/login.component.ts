@@ -57,15 +57,5 @@ export class LoginComponent implements OnInit {
     if (this.alert != "") {
       this.missedConnexion = !this.missedConnexion;
     };
-    // .subscribe(
-    //   (resp: any) => {
-    //     console.log("Connection succeed", resp);
-    //     this.router.navigate(['/']);
-    //   },
-    //   error => {
-    //     console.log('error while');
-    //   }
-
-    // )
   }
 }
