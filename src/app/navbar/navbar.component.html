@@ -19,20 +19,20 @@
           <li class="nav-item" routerLinkActive="active" *ngIf="currentUser">
             <a class="nav-link" routerLink="/citations">Mes citations</a>
           </li>
-          <li class="nav-item" routerLinkActive="active" *ngIf="currentUser">
+          <!-- <li class="nav-item" routerLinkActive="active" *ngIf="currentUser">
             <a class="nav-link" (click)="logOut()"><span class="material-icons">
               logout
               </span>
               </a>
-          </li>
+          </li> -->
           
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="currentUser">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="fas fa-user-circle "></i>
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <li><a class="dropdown-item" href="#" routerLink="/home" routerLinkActive="active">Profil</a></li>
-              <li><a class="dropdown-item" href="#" routerLink="/login" routerLinkActive="active">Déconnexion</a></li>
+              <li><a class="dropdown-item" href="#" routerLink="/login" routerLinkActive="active" (click)="logOut()">Déconnexion</a></li>
             </ul>
           </li>
         </ul>

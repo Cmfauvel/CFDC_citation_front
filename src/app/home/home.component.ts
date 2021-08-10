@@ -23,8 +23,8 @@ currentUser: User;
     })
     try {
       this.displayCitation();
-    } catch {
-
+    } catch(error) {
+      console.log("__Error handled gracefully : ", error.name)
     }
    
   }

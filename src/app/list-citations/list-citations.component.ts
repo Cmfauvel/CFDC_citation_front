@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { CitationService } from '../services/citation.service';
 import { UserService } from '../services/user.service';
@@ -14,14 +15,21 @@ import { User } from '../_models/user';
 })
 export class ListCitationsComponent implements OnInit {
 citations: Citation[];
+dataCitations: Citation[];
 currentUser: User;
-  constructor(private auth: AuthService, private userService: UserService, private citationService: CitationService, private matDialog: MatDialog) { }
+  constructor(private auth: AuthService, private userService: UserService, private citationService: CitationService, private matDialog: MatDialog,
+    private router: Router) { }
 
   ngOnInit(): void {
-    this.auth.currentUser.subscribe((resp) => {
-      this.currentUser = resp;
-    })
-    this.findCitations();
+    try {
+      this.auth.currentUser.subscribe((resp) => {
+        this.currentUser = resp;
+      })
+      this.findCitations();
+    } catch(error) {
+      console.log("__Error handled gracefully : ", error.name)
+    }
+    
   }
 
   findCitations(){
@@ -34,17 +42,24 @@ currentUser: User;
   }
 
   deleteCitation(id: number): void {
-    const dialogRef = this.matDialog.open(ConfirmComponent, {
-      width: '350px',
-      data: "Voulez-vous supprimer cette Citation ?"
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.citationService.delete(id).subscribe((resp) => {
-          this.citationService.selectAll();
-        });
-      };
-    });
+    try {
+      const dialogRef = this.matDialog.open(ConfirmComponent, {
+        width: '350px',
+        data: "Voulez-vous supprimer cette Citation ?"
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.citationService.delete(id).subscribe((resp) => {
+            console.log(resp)
+          });
+          this.dataCitations = this.citations?.filter(citation => citation.id !== id);
+          this.citations = this.dataCitations;
+        };
+      });
+    } catch(error) {
+      console.log("__Error handled gracefully : ", error.name)
+    }
+   
   };
 
 }
