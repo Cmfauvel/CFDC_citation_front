@@ -1,50 +1,28 @@
-<div class="container marginTop">
-    <h1>Connexion</h1>
-    <form class="form-group formulaire"
-          [formGroup]="loginForm">
-          <label class="sr-only" for="pseudo">Username</label>
-      <div class="input-group mb-2 mr-sm-2">
-        <div class="input-group-prepend">
-          <div class="input-group-text">P</div>
-        </div>
-        <input type="text"
-              class="form-control"
-              placeholder=""
-              formControlName="pseudo">
+<div class="container">
+  <h1>Connexion</h1>
+  <form class="form-group formulaire" [formGroup]="loginForm">
+    <label class="sr-only" for="mail">Email</label>
+    <div class="input-group mb-2 mr-sm-2">
+      <div class="input-group-prepend">
+        <div class="input-group-text">@</div>
       </div>
-      <label class="sr-only" for="mail">Email</label>
-      <div class="input-group mb-2 mr-sm-2">
-        <div class="input-group-prepend">
-          <div class="input-group-text">@</div>
-        </div>
-        <input type="email"
-              class="form-control"
-              id="floatingInput"
-              placeholder=""
-              formControlName="mail">
+      <input type="email" class="form-control" id="floatingInput" placeholder="" formControlName="mail">
+    </div>
+    <label class="sr-only" for="password">Password</label>
+    <div class="input-group mb-2 mr-sm-2">
+      <div class="input-group-prepend">
+        <div class="input-group-text">*</div>
       </div>
-      <label class="sr-only" for="password">Password</label>
-      <div class="input-group mb-2 mr-sm-2">
-        <div class="input-group-prepend">
-          <div class="input-group-text">*</div>
-        </div>
-        <input type="password"
-                class="form-control"
-                id="floatingPassword"
-                placeholder=""
-                formControlName="password">
-      </div>
-  
-  
-      <div class="form-check checkBox">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">Se Souvenir De Moi</label>
-      </div>
-      <button class="w-100 btn btn-lg btn-primary"
-      type="submit"
-      (click)="onSubmit()"
-      [disabled]="loginForm.invalid">Se Connecter</button>
-      <p class="linkRegister">Pas encore inscrit? <a href="../register/register.component.html">Inscrivez-vous ici</a></p>
-    </form>
-  </div>
-  
+      <input type="password" class="form-control" id="floatingPassword" placeholder="" formControlName="password">
+    </div>
+
+
+    <div class="form-check checkBox">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+      <label class="form-check-label" for="exampleCheck1">Se Souvenir De Moi</label>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" (click)="onSubmit()" [disabled]="loginForm.invalid">Se
+      Connecter</button>
+    <p class="linkRegister">Pas encore inscrit? <a routerLink="/inscription">Inscrivez-vous ici</a></p>
+  </form>
+</div>

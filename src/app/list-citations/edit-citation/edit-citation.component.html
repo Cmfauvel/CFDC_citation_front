@@ -1,0 +1,5 @@
+<div class="mb-3" [formGroup]="editForm">
+    <label for="content" class="form-label">Modifier votre citation</label>
+    <input type="text" class="form-control" formControlName="content" id="content" >
+  </div>
+  <a (click)="onSubmit()" class="btn btn-primary">Modifier</a><a routerLink="/citations" class="btn btn-primary">Retour</a>

@@ -1,0 +1,9 @@
+<div class="container">
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Citation du moment</h5>
+          <p class="card-text" *ngIf="citation">{{citation.content}}</p>         
+        </div>
+      </div>
+       <a routerLink="/create" class="btn btn-primary" *ngIf="currentUser">Créer une citation</a>
+</div>

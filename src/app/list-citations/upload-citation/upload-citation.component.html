@@ -1,0 +1,5 @@
+<div class="mb-3" [formGroup]="uploadForm">
+    <label for="content" class="form-label">Créez une citation</label>
+    <input type="text" class="form-control" formControlName="content" id="content" >
+  </div>
+  <a (click)="onSubmit()" class="btn btn-primary">Créer</a><a routerLink="/citations" class="btn btn-primary">Retour</a>
