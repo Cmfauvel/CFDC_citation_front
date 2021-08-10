@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ListCitationsComponent } from './list-citations/list-citations.component';
 import { UploadCitationComponent } from './list-citations/upload-citation/upload-citation.component';
 import { EditCitationComponent } from './list-citations/edit-citation/edit-citation.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { EditCitationComponent } from './list-citations/edit-citation/edit-citat
     NavbarComponent,
     ListCitationsComponent,
     UploadCitationComponent,
-    EditCitationComponent
+    EditCitationComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
