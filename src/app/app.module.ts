@@ -15,6 +15,9 @@ import { ListCitationsComponent } from './list-citations/list-citations.componen
 import { UploadCitationComponent } from './list-citations/upload-citation/upload-citation.component';
 import { EditCitationComponent } from './list-citations/edit-citation/edit-citation.component';
 import { FooterComponent } from './footer/footer.component';
+import { ConfirmComponent } from './_helpers/confirm/confirm.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -26,15 +29,19 @@ import { FooterComponent } from './footer/footer.component';
     ListCitationsComponent,
     UploadCitationComponent,
     EditCitationComponent,
-    FooterComponent
+    FooterComponent,
+    ConfirmComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatDialogModule
   ],
+  exports: [MatDialogModule],
   providers: [AuthService],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

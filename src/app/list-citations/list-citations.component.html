@@ -7,7 +7,7 @@
         <span class="material-icons" id="btn-edit" [routerLink]="[citation.id]">
           edit
         </span>
-        <span class="material-icons" id="btn-delete">
+        <span class="material-icons" id="btn-delete" (click)="deleteCitation(citation.id)">
           delete
         </span>
 
