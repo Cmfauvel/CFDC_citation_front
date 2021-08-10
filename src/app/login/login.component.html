@@ -1,24 +1,24 @@
 <div class="container">
   <h1>Connexion</h1>
-  <div class="alert alert-danger" role="alert" [class.errorShow]="missedConnexion">{{alert}}</div>
+  <div class="alert alert-danger" role="alert" [class.errorShow]="missedConnexion" *ngIf="missedConnexion">{{alert}}</div>
   <form class="form-group formulaire" [formGroup]="loginForm">
-    <label class="sr-only" for="mail">Email</label>
+    <label class="" for="mail">Email</label>
     <div class="input-group mb-2 mr-sm-2">
-      <div class="input-group-prepend">
+      <!-- <div class="input-group-prepend">
         <div class="input-group-text">@</div>
-      </div>
-      <input type="email" class="form-control" id="floatingInput" placeholder="" formControlName="mail">
+      </div> -->
+      <input type="email" class="form-control" id="mail" placeholder="" formControlName="mail">
     </div>
-    <label class="sr-only" for="password">Password</label>
+    <label class="" for="password">Password</label>
     <div class="input-group mb-2 mr-sm-2">
-      <div class="input-group-prepend">
+      <!-- <div class="input-group-prepend">
         <div class="input-group-text">*</div>
-      </div>
+      </div> -->
       <input [type]="fieldTextType ? 'text' : 'password'" class="input form-control" formControlName="password"
-        name="password" />
+        name="password" id="password"/>
       <div class="input-group-append">
         <span class="input-group-text">
-          <i class="fas" [ngClass]="{
+          <i class="fas" id="icon-eye" [ngClass]="{
           'fa-eye-slash': !fieldTextType,
           'fa-eye': fieldTextType
         }" (click)="toggledEye()"></i> </span>
