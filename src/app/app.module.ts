@@ -10,7 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './services/auth.service';
 import { NavbarComponent } from './navbar/navbar.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ListCitationsComponent } from './list-citations/list-citations.component';
 import { UploadCitationComponent } from './list-citations/upload-citation/upload-citation.component';
 import { EditCitationComponent } from './list-citations/edit-citation/edit-citation.component';
@@ -18,6 +18,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ConfirmComponent } from './_helpers/confirm/confirm.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
+import { AuthInterceptor } from './interceptor/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatDialogModule
   ],
   exports: [MatDialogModule],
-  providers: [AuthService],
+  providers: [
+    AuthService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
