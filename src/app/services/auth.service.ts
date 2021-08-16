@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment.prod';
 import { User } from '../_models/user';
@@ -14,8 +14,8 @@ export class AuthService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
   baseUrl = `${environment.apiUrl}`;
-  messageActivate: string = "Veuillez cliquer sur le lien pour activer votre compte !";
-  messageNotMatch: string = "Adresse mail ou mot de passe erroné."
+  messageActivate: string;
+  messageNotMatch: string;
 
   constructor(private httpClient: HttpClient,
     private router: Router) {
@@ -23,14 +23,15 @@ export class AuthService {
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  register(newUser: User) {
-    return this.httpClient.post<any>(this.baseUrl + '/auth/register', newUser).pipe(map((response) => {
-      return response;
-    })
-    );
+  register(newUser: User): Observable<any> {
+    return this.httpClient.post<any>(this.baseUrl + '/auth/register', newUser)
+    // .pipe(map((response) => {
+    //   return response;
+    // })
+    // );
   }
 
-  login(body) {
+  login(body): Subscription {
     return this.httpClient.post<any>(this.baseUrl + '/auth/login', body)
       .subscribe(
         (response) => {
@@ -46,13 +47,16 @@ export class AuthService {
           }
         },
         (error) => {
+          if(error){
+            this.messageActivate = "Veuillez cliquer sur le lien pour activer votre compte !";
+            this.messageNotMatch = "Adresse mail ou mot de passe erroné."
+          }
           console.log('error trying to connect');
-          // this.isAuth = false;}
         }
       );
   }
 
-  getUserId() {
+  getUserId(): number {
     const helper = new JwtHelperService();
     const decodedToken = helper.decodeToken(this.getToken());
     const id = parseInt(decodedToken.id);
@@ -61,7 +65,7 @@ export class AuthService {
   }
 
 
-  getToken() {
+  getToken(): string {
     const token = localStorage.getItem('TOKEN_APPLI')
     console.log(token)
     if (token) {
@@ -69,7 +73,7 @@ export class AuthService {
     }
   }
 
-  public isAuthenticated() {
+  public isAuthenticated(): void {
     const token = this.getToken();
     const id = this.getUserId();
     if (token) {
@@ -79,7 +83,7 @@ export class AuthService {
     }
   }
 
-  isAuth(){
+  isAuth(): boolean{
     const token = localStorage.getItem('TOKEN_APPLI');
     if(token){
       return true;
@@ -89,7 +93,7 @@ export class AuthService {
     }
   }
 
-  logout() {
+  logout(): void {
     this.currentUserSubject.next(null)
     localStorage.removeItem('TOKEN_APPLI');
     this.router.navigate(['/connexion']);

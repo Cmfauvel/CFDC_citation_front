@@ -24,7 +24,6 @@ editForm: FormGroup;
   ngOnInit(): void {
     const idCitation = this.activatedRoute.snapshot.params['id'];
     this.citationService.selectOne(idCitation).subscribe((resp) => {
-      console.log(resp)
       this.citation = resp[0];
     })
    

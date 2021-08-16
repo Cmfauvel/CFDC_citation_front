@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { User } from '../_models/user';
-//import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +22,6 @@ export class LoginComponent implements OnInit {
   
   constructor(
     private auth: AuthService,
-    private router : Router,
     private fb: FormBuilder
   ) { }
 
@@ -45,12 +43,11 @@ export class LoginComponent implements OnInit {
     this.fieldTextType = !this.fieldTextType;
   }
   
-  onSubmit() {
-    const user = {
+  onSubmit(): void {
+    const user: User = {
       mail: this.loginForm.value.mail,
       password: this.loginForm.value.password,
-    }
-    console.log(user);
+    };
     this.auth.login(user);
     this.alert = this.auth.messageNotMatch;
     this.auth.messageActivate;

@@ -16,7 +16,6 @@ export class RegisterComponent implements OnInit {
   constructor(private auth: AuthService,
     private fb: FormBuilder,
     private route: Router) { 
-      // this.registerForm = new FormGroup({});
     }
 
   ngOnInit(): void {
@@ -38,14 +37,12 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  onSubmit(){
-    console.log(this.registerForm.value)
+  onSubmit(): void{
     const user = {
       username: this.registerForm.value.pseudo,
       mail: this.registerForm.value.mail,
       password: this.registerForm.value.password
-    }
-    console.log(user)
+    };
 
     this.auth.register(user).subscribe((response) => console.log(response));
     this.route.navigate(['/connexion']);

@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { CitationService } from '../services/citation.service';
-import { UserService } from '../services/user.service';
 import { ConfirmComponent } from '../_helpers/confirm/confirm.component';
 import { Citation } from '../_models/citation';
-import { User } from '../_models/user';
 
 @Component({
   selector: 'app-list-citations',
@@ -17,8 +14,7 @@ export class ListCitationsComponent implements OnInit {
 citations: Citation[];
 dataCitations: Citation[];
 userId: number;
-  constructor(private auth: AuthService, private userService: UserService, private citationService: CitationService, private matDialog: MatDialog,
-    private router: Router) { }
+  constructor(private auth: AuthService, private citationService: CitationService, private matDialog: MatDialog) { }
 
   ngOnInit(): void {
     try {
